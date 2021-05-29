@@ -12,14 +12,6 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class PagesExample {
 
-
-
-    @FindBy(css = "input.new-todo")
-    public WebElement searchText;
-
-    @FindBy(xpath = "//*[text() = 'Hasan']")
-    public WebElement elementLabel;
-
     @Test
     void FirstTry() {
         open("https://todomvc.com/examples/backbone/");
