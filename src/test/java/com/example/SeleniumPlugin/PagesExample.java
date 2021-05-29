@@ -1,22 +1,35 @@
 package com.example.SeleniumPlugin;
 
-import com.codeborne.selenide.Configuration;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class PagesExample {
 
+
+
+    @FindBy(css = "input.new-todo")
+    public WebElement searchText;
+
+    @FindBy(xpath = "//*[text() = 'Hasan']")
+    public WebElement elementLabel;
+
     @Test
     void FirstTry() {
+        open("https://todomvc.com/examples/backbone/");
+        SelenideElement searchBox = $("input.new-todo");
+        searchBox.sendKeys("Hasan");
+        searchBox.pressEnter();
 
-        open("https://twitter.com");
-
+        SelenideElement label = $("body > section > section > ul > li > div > label");
+        label.should(visible);
     }
+
+
 }
